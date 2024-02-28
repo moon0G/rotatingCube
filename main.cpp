@@ -49,15 +49,15 @@ int main(int argc, char** argv)
 
     std::vector<vec3> points 
     {
-        {100, 100, 100},
-        {200, 100, 100},
-        {200, 200, 100},
-        {100, 200, 100},
+        {150, 100, 100},
+        {250, 100, 100},
+        {250, 200, 100},
+        {150, 200, 100},
 
-        {100, 100, 200},
-        {200, 100, 200},
-        {200, 200, 200},
-        {100, 200, 200}
+        {150, 100, 200},
+        {250, 100, 200},
+        {250, 200, 200},
+        {150, 200, 200}
     };
 
     std::vector<connection> connections
@@ -122,7 +122,7 @@ int main(int argc, char** argv)
         screen.show();
         screen.clear();
         screen.input();
-        SDL_Delay(30);
+        SDL_Delay(60);
     }
 
     return 0;

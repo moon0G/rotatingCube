@@ -10,9 +10,12 @@ class Screen
     SDL_Window* window;
     SDL_Renderer* renderer;
     std::vector<SDL_FPoint> points;
+    bool isFullscreen;
     public:
     Screen()
     {
+        isFullscreen = false;
+
         SDL_Init(SDL_INIT_VIDEO);
         
         SDL_CreateWindowAndRenderer(
@@ -69,8 +72,14 @@ class Screen
                 case SDL_QUIT:
                     SDL_Quit();
                     exit(0);
-            }
 
+                case SDL_KEYDOWN:
+                    if(e.key.keysym.sym == SDLK_f) {
+                        isFullscreen = !isFullscreen;
+                        SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+                    }
+            }
+            
             /*
             if(e.type == SDL_QUIT) 
             {
