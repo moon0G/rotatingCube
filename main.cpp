@@ -45,7 +45,16 @@ void line(Screen& screen, float x1, float y1, float x2, float y2)
 
 int main(int argc, char** argv) 
 {
-    Screen screen;
+    bool isScreensaverMode = false;
+    for (int i = 1; i < argc; ++i) {
+        if (std::string(argv[i]) == "/s" || std::string(argv[i]) == "/S" ||
+            std::string(argv[i]) == "/p" || std::string(argv[i]) == "/P") {
+            isScreensaverMode = true;
+            break;
+        }
+    }
+
+    Screen screen(isScreensaverMode);
 
     std::vector<vec3> points 
     {

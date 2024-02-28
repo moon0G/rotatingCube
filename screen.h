@@ -12,12 +12,23 @@ class Screen
     std::vector<SDL_FPoint> points;
     bool isFullscreen;
     public:
-    Screen()
+    Screen(bool isScreenSaver)
     {
         isFullscreen = false;
 
         SDL_Init(SDL_INIT_VIDEO);
-        
+        if(isScreenSaver)
+        {
+            window = SDL_CreateWindow(
+                "ScreenSaver",
+                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                400*2, 300*2,
+                SDL_WINDOW_FULLSCREEN_DESKTOP
+            );
+            renderer = SDL_CreateRenderer(window, -1, 0);
+        } 
+        else 
+        {
         SDL_CreateWindowAndRenderer(
             400*2, 
             300*2,
@@ -25,15 +36,8 @@ class Screen
             &window,
             &renderer
         );
-        /* 
-        window = SDL_CreateWindow(
-            "Pixel",
-            SDL_WINDOWPOS_UNDEFINED,
-            SDL_WINDOWPOS_UNDEFINED,
-            640*2, 480*2,
-            SDL_WINDOW_SHOWN
-        );
-        */        
+        }
+        
 
         SDL_RenderSetScale(renderer, 2, 2);
     }
