@@ -1,1 +1,1 @@
-PowerShell -NoExit "g++ -std=c++20 main.cpp -I C:\Users\bfant\Programming\basicRasterization\SDL2\include -L C:\Users\bfant\Programming\basicRasterization\SDL2\lib -Wall -lmingw32 -lSDL2main -lSDL2 -o pixel"
+PowerShell -NoExit "g++ -std=c++20 main.cpp -I C:\Users\bfant\Programming\rotatingCube\SDL2\include -L C:\Users\bfant\Programming\rotatingCube\SDL2\lib -mwindows -Wall -lmingw32 -lSDL2main -lSDL2 -o pixel"
