@@ -11,35 +11,29 @@ class Screen
     SDL_Renderer* renderer;
     std::vector<SDL_FPoint> points;
     bool isFullscreen;
+    bool ScreenSaver;
     public:
     Screen(bool isScreenSaver)
     {
         isFullscreen = false;
+        ScreenSaver = isScreenSaver;
 
         SDL_Init(SDL_INIT_VIDEO);
-        if(isScreenSaver)
-        {
-            window = SDL_CreateWindow(
-                "ScreenSaver",
-                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                400*2, 300*2,
-                SDL_WINDOW_FULLSCREEN_DESKTOP
-            );
-            renderer = SDL_CreateRenderer(window, -1, 0);
-        } 
-        else 
-        {
-        SDL_CreateWindowAndRenderer(
+            SDL_CreateWindowAndRenderer(
             400*2, 
             300*2,
             0,
             &window,
             &renderer
         );
-        }
         
-
         SDL_RenderSetScale(renderer, 2, 2);
+        
+        if(isScreenSaver)
+        {
+            isFullscreen = !isFullscreen;
+            SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+        }
     }
 
     void pixel(float x, float y) 
@@ -78,12 +72,17 @@ class Screen
                     exit(0);
 
                 case SDL_KEYDOWN:
-                    if(e.key.keysym.sym == SDLK_f) {
+                    if(e.key.keysym.sym == SDLK_f) 
+                    {
                         isFullscreen = !isFullscreen;
                         SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
                     }
-            }
-            
+                    if(e.key.keysym.sym == SDLK_SPACE)
+                    {
+                        SDL_Quit();
+                        exit(0);
+                    }
+            } 
             /*
             if(e.type == SDL_QUIT) 
             {

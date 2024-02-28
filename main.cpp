@@ -100,7 +100,7 @@ int main(int argc, char** argv)
     c.x /= points.size();
     c.y /= points.size();
     c.z /= points.size();
-
+    
     while(true) 
     {
         for(auto& p: points)
