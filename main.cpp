@@ -110,7 +110,7 @@ int main(int argc, char** argv)
             p.z -= c.z;
 
             rotate(p, 0.002, 0.001, 0.004);
-            
+            //rotate(p, 0.009, 0.007, 0.003);
             p.x += c.x;
             p.y += c.y;
             p.z += c.z;
