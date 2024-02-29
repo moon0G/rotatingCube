@@ -131,7 +131,7 @@ int main(int argc, char** argv)
         screen.show();
         screen.clear();
         screen.input();
-        SDL_Delay(60);
+        SDL_Delay(30);
     }
 
     return 0;

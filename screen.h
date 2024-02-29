@@ -65,20 +65,31 @@ class Screen
     {
         while(SDL_PollEvent(&e) != 0) 
         {
+            if(isFullscreen)
+            {
+                SDL_ShowCursor(SDL_DISABLE);
+            }
+            else 
+            {
+                SDL_ShowCursor(SDL_ENABLE);
+            }
+
             switch(e.type) 
             {
                 case SDL_QUIT:
+                    SDL_ShowCursor(SDL_ENABLE);
                     SDL_Quit();
                     exit(0);
 
                 case SDL_KEYDOWN:
-                    if(e.key.keysym.sym == SDLK_f) 
+                    if(e.key.keysym.sym == SDLK_f && !ScreenSaver) 
                     {
                         isFullscreen = !isFullscreen;
                         SDL_SetWindowFullscreen(window, isFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
                     }
-                    if(e.key.keysym.sym == SDLK_SPACE)
+                    if(e.key.keysym.sym == SDLK_SPACE && ScreenSaver)
                     {
+                        SDL_ShowCursor(SDL_ENABLE);
                         SDL_Quit();
                         exit(0);
                     }
